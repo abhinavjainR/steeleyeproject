@@ -1,0 +1,37 @@
+1. Explain what the simple List component does.
+Ans: Lists are utilized to show information in an arranged order and mostly used to show menus on sites.
+
+const exampleList = ['A', 'B', 'C', 'D','E'];
+const TestList = ( ) => (
+  <ul>
+    {exampleList.map(item => {
+      return <li key={item}>{item}</li>;
+    })}
+  </ul>
+);
+
+The list component contains list items.
+A single list item is stored inside WrappedSingleListItem that contains 2 values index and text, 
+a state named isSelected and an onClick event.
+
+The wrapped list item is then memoized using the memo function, which means that 
+react will reuse the list content until the props are same.
+Memo function prevents re-rendering on the same element repeatedly.
+
+Items array is used to store these list items and then each item is looped through using map() function 
+and displayed. 
+
+
+
+
+2. What problems / warnings is there with code ?
+Ans: 
+(a) Error in onClick={onClickHandler(index)}. It should give boolean value as onClick={onClickHandler(Boolean(index))}.
+(b) Error in definition of the useState() : const [setSelectedIndex, selectedIndex] = useState();
+set function would be the 2nd parameter.
+(c) Error in definition of  WrappedListComponent.propTypes - It should be arrayOf instead of shapeOf.
+(d) Definitions of items is null in WrappedListComponent.defaultProps. It will not be mapped otherwise 
+   
+    WrappedListComponent.defaultProps = {
+     items: null,
+        };
